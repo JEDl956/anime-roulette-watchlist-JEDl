@@ -1,8 +1,8 @@
 <script setup>
-/* global alert */
+import AnimeCard from '@/components/AnimeCard.vue'
 
 const spin = () => {
-  alert('Hello')
+  console.log('Hello')
 }
 </script>
 
@@ -27,6 +27,8 @@ const spin = () => {
       </header>
 
       <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        
+        <!-- Roulette Section -->
         <section class="space-y-5">
           <div
             @click="spin"
@@ -50,11 +52,12 @@ const spin = () => {
               </button>
             </div>
           </div>
+          <AnimeCard loading />
         </section>
 
-        <section class="space-y-5">
-          <!-- Right side (Watchlist) -->
-        </section>
+       
+        
+
       </div>
     </div>
   </main>
