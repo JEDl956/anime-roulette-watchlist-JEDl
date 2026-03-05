@@ -42,8 +42,17 @@ const props = defineProps({
       </div>
       <div class="h-72 animate-pulse rounded-2xl bg-slate-800"></div>
     </div>
+<div
+  v-else-if="error"
+  class="rounded-2xl border border-red-300/50 bg-red-500/10 p-4 text-red-100"
+>
+  <h3 class="text-lg font-semibold">Spin failed</h3>
 
-    <!-- Loaded State -->
+  <p class="mt-2 text-sm text-red-100/90">
+    {{ error }}
+  </p>
+</div>
+  
     <div v-else>
       Done
     </div>
