@@ -1,18 +1,17 @@
 <script setup>
-import { ref } from 'vue'
-import AnimeCard from '@/components/AnimeCard.vue'
+import { ref } from 'vue' // reactive state
+import AnimeCard from '@/components/AnimeCard.vue' // anime display component
 
-const loading = ref(false)
-const error = ref('')
+const loading = ref(false) // controls loading state
+const error = ref('') // stores error message
 
+// runs when Spin button is clicked
 const spin = () => {
-  // demo behavior: toggle loading then toggle error
   loading.value = true
   error.value = ''
 
   setTimeout(() => {
     loading.value = false
-    // comment this out later when you connect the API
     // error.value = 'Something went wrong'
   }, 900)
 }
@@ -23,6 +22,8 @@ const spin = () => {
     class="min-h-screen bg-[radial-gradient(circle_at_15%_20%,#334155,transparent_40%),radial-gradient(circle_at_85%_0%,#0f766e,transparent_28%),linear-gradient(160deg,#020617,#0f172a,#111827)] px-4 py-8 text-slate-100 sm:px-6 lg:px-8"
   >
     <div class="mx-auto max-w-5xl">
+
+      <!-- Page title -->
       <header class="mb-8">
         <p class="text-xs font-semibold tracking-[0.3em] text-cyan-300/90 uppercase">
           Project #4
@@ -33,23 +34,24 @@ const spin = () => {
         </h1>
 
         <p class="mt-2 max-w-3xl text-sm text-slate-300 sm:text-base">
-          Spin the reel, request a random anime from Jikan with VueUse useFetch,
-          and learn how REST APIs signal rate limiting with HTTP 429.
+          Spin the reel to request a random anime from the Jikan API.
         </p>
       </header>
 
-      <!-- Roulette card -->
+      <!-- Spin control -->
       <section
         class="rounded-3xl border border-slate-700/70 bg-slate-900/40 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur"
       >
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 class="text-xl font-bold text-white">Roulette</h2>
+
             <p class="text-sm text-slate-300">
-              Pull the lever for your next random anime recommendation.
+              Click Spin to get a random anime.
             </p>
           </div>
 
+          <!-- Button triggers spin() -->
           <button
             type="button"
             @click="spin"
@@ -60,10 +62,11 @@ const spin = () => {
         </div>
       </section>
 
-      <!-- Big result card (full width under roulette) -->
+      <!-- Anime result card -->
       <div class="mt-6">
         <AnimeCard :loading="loading" :error="error" />
       </div>
+
     </div>
   </main>
 </template>
