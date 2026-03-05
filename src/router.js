@@ -8,11 +8,7 @@ const routes = [
     name: 'home',
     component: HomePage,
   },
-  {
-    path: '/other',
-    name: 'other',
-    component: () => import('@/views/OtherPage.vue'),
-  },
+ 
 ]
 
 const router = createRouter({
