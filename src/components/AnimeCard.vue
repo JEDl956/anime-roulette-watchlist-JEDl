@@ -154,7 +154,7 @@ watch(
       v-else
       class="rounded-2xl border border-slate-700/60 bg-slate-800/50 p-6 text-center text-slate-300"
     >
-      Pull the lever to request your first random anime.
+      Press the button to discover your first random anime.
     </div>
   </section>
 </template>
