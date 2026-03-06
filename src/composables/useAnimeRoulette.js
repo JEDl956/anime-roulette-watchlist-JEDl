@@ -8,7 +8,6 @@ const RETRY_SECONDS = 10
 
 const isAllowedRating = (rating) => {
   if (!rating) return false
-
   return !rating.trim().startsWith('R')
 }
 
@@ -16,9 +15,11 @@ export function useAnimeRoulette() {
   const anime = ref(null)
   const loading = ref(false)
   const error = ref('')
+
   const { remaining: cooldownLeft, start: startCooldown } = useCountdown(0, {
     interval: 1000,
   })
+
   const watchlist = useLocalStorage(WATCHLIST_KEY, [])
 
   const spin = async () => {
@@ -41,11 +42,16 @@ export function useAnimeRoulette() {
 
         if (response.status === 429) {
           startCooldown(RETRY_SECONDS)
-          error.value = `Rate-limited (429). Please wait ${RETRY_SECONDS}s before spinning again.`
+          error.value = `Too many requests right now. Please wait ${RETRY_SECONDS} seconds and try again.`
           return
         }
 
         if (!response.ok) {
+          if (response.status === 504) {
+            error.value = 'Jikan took too long to respond. Please try again in a moment.'
+            return
+          }
+
           error.value = `Something went wrong while contacting Jikan. Status: ${response.status}.`
           return
         }
@@ -67,9 +73,10 @@ export function useAnimeRoulette() {
         }
 
         anime.value = candidateAnime
-
         return
       }
+
+      error.value = 'Could not find a valid anime right now. Please spin again.'
     } catch {
       error.value = 'Could not find an anime right now. Please spin again in a moment.'
     } finally {
@@ -78,17 +85,13 @@ export function useAnimeRoulette() {
   }
 
   const addToWatchlist = (animeToAdd) => {
-    if (!animeToAdd?.mal_id) {
-      return
-    }
+    if (!animeToAdd?.mal_id) return
 
     const alreadyInWatchlist = watchlist.value.some(
       (watchlistAnime) => watchlistAnime.mal_id === animeToAdd.mal_id,
     )
 
-    if (alreadyInWatchlist) {
-      return
-    }
+    if (alreadyInWatchlist) return
 
     watchlist.value.unshift({
       mal_id: animeToAdd.mal_id,
