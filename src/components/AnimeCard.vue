@@ -76,27 +76,26 @@ watch(
         <div class="h-3 animate-pulse rounded bg-slate-700"></div>
         <div class="h-3 animate-pulse rounded bg-slate-700"></div>
       </div>
-
       <div class="h-72 animate-pulse rounded-2xl bg-slate-800"></div>
     </div>
 
     <div
-      v-else-if="props.error"
+      v-else-if="error"
       class="rounded-2xl border border-red-300/50 bg-red-500/10 p-4 text-red-100"
     >
       <h3 class="text-lg font-semibold">Spin failed</h3>
-      <p class="mt-2 text-sm text-red-100/90">{{ props.error }}</p>
+      <p class="mt-2 text-sm text-red-100/90">{{ error }}</p>
     </div>
 
     <div
-      v-else-if="props.anime"
+      v-else-if="anime"
       class="space-y-4"
     >
       <div class="overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-800/60">
         <img
           v-if="animeImage"
           :src="animeImage"
-          :alt="props.anime.title"
+          :alt="anime.title"
           class="h-80 w-full bg-slate-900/50 object-contain"
           loading="lazy"
         />
@@ -109,13 +108,12 @@ watch(
       </div>
 
       <div>
-        <h2 class="text-2xl font-black text-white">{{ props.anime.title }}</h2>
+        <h2 class="text-2xl font-black text-white">{{ anime.title }}</h2>
         <p class="mt-1 text-sm text-slate-300">
-          Score: <span class="font-semibold text-amber-300">{{ props.anime.score ?? 'N/A' }}</span>
-          · Episodes:
-          <span class="font-semibold text-cyan-300">{{ props.anime.episodes ?? 'Unknown' }}</span>
-          · Rating:
-          <span class="font-semibold text-pink-300">{{ props.anime.rating || 'Unknown' }}</span>
+          Score: <span class="font-semibold text-amber-300">{{ anime.score ?? 'N/A' }}</span> ·
+          Episodes:
+          <span class="font-semibold text-cyan-300">{{ anime.episodes ?? 'Unknown' }}</span> ·
+          Rating: <span class="font-semibold text-pink-300">{{ anime.rating || 'Unknown' }}</span>
         </p>
       </div>
 
@@ -135,14 +133,14 @@ watch(
         <button
           type="button"
           class="rounded-full border border-cyan-300/60 bg-cyan-400/15 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-400/25 disabled:cursor-not-allowed disabled:opacity-50"
-          :disabled="props.inWatchlist"
-          @click="emit('add', props.anime)"
+          :disabled="inWatchlist"
+          @click="emit('add', anime)"
         >
-          {{ props.inWatchlist ? 'In Watchlist' : 'Add to Watchlist' }}
+          {{ inWatchlist ? 'In Watchlist' : 'Add to Watchlist' }}
         </button>
 
         <a
-          :href="props.anime.url"
+          :href="anime.url"
           target="_blank"
           rel="noopener noreferrer"
           class="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/40"

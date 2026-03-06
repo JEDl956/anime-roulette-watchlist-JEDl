@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@vueuse/core": "^14.2.1",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
     "vue": "^3.5.28",
     "vue-router": "^5.0.3",
     "wrangler": "^4.69.0"
@@ -22,14 +24,14 @@
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.26.1",
     "@eslint/js": "^9.39.3",
-    "@tailwindcss/vite": "^4.2.0",
+    "@tailwindcss/vite": "^4.2.1",
     "@vitejs/plugin-vue": "^6.0.4",
     "eslint": "^9.39.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.8.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4.2.0",
+    "tailwindcss": "^4.2.1",
     "vite": "^7.3.1"
   }
 }

@@ -37,16 +37,10 @@ const spinLabel = computed(() => {
   >
     <div class="mx-auto max-w-7xl">
       <header class="mb-8">
-        <p class="text-xs font-semibold tracking-[0.3em] text-cyan-300/90 uppercase">
-          Project #4
-        </p>
-
-        <h1 class="mt-2 text-4xl font-black text-white sm:text-5xl">
-          Anime Roulette Machine
-        </h1>
-
+        <p class="text-xs font-semibold tracking-[0.3em] text-cyan-300/90 uppercase">Project #4</p>
+        <h1 class="mt-2 text-4xl font-black text-white sm:text-5xl">Anime Roulette Machine</h1>
         <p class="mt-2 max-w-3xl text-sm text-slate-300 sm:text-base">
-          Spin the reel, request a random anime from Jikan with VueUse useFetch, and learn how REST
+          Spin the reel, request a random anime from Jinkan with VueUse useFech, and learnhow REST
           APIs signal rate limiting with HTTP 429.
         </p>
       </header>
@@ -63,7 +57,6 @@ const spinLabel = computed(() => {
                   Pull the lever for your next random anime recommendation.
                 </p>
               </div>
-
               <button
                 type="button"
                 :disabled="spinDisabled"
@@ -73,7 +66,6 @@ const spinLabel = computed(() => {
                 {{ spinLabel }}
               </button>
             </div>
-
             <p
               v-if="cooldownLeft > 0"
               class="mt-4 rounded-xl border border-amber-300/50 bg-amber-400/10 px-3 py-2 text-sm font-semibold text-amber-100"
@@ -81,7 +73,6 @@ const spinLabel = computed(() => {
               Rate-limited. Try again in {{ cooldownLeft }}s.
             </p>
           </div>
-
           <AnimeCard
             :loading="loading"
             :error="error"
@@ -90,7 +81,6 @@ const spinLabel = computed(() => {
             @add="addToWatchlist"
           />
         </section>
-
         <WatchList
           :items="watchlist"
           @remove="removeFromWatchlist"
